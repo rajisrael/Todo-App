@@ -1,0 +1,58 @@
+<!-- Toolbar -->
+<div class="toolba" role="banner">
+</div>
+<div class="fluid-container">
+<div class="contain col-md-12">
+  <div class="bg-for-color">
+  <h2 style="text-align: center;">To Do List</h2>
+  <!-- <div
+    cdkDropList
+    #todosList="cdkDropList"
+    [cdkDropListData]="ShoppingList"
+    class="todo-list"
+    (cdkDropListDropped)="onDrop($event)">
+  <div class="todo-block" *ngFor="let shoppingList of ShoppingList" cdkDrag>{{shoppingList | json}}</div> -->
+
+
+<div class="content col-md-12" role="main">
+  <div class="container col-md-6">
+    <form [formGroup]="todoForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>Add ToDo</mat-label>
+        <input matInput placeholder="Add Task" formControlName="todoInput">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="button" type="submit" (click)="addTodo(this.todoInput)">Add todo</button>
+    </form>
+
+    <h2>Today's Tasks</h2>
+    <div
+            cdkDropList
+            #todosList="cdkDropList"
+            [cdkDropListData]="TodosList"
+            [cdkDropListConnectedTo]="[doneTotosList]"
+            class="todo-list"
+            (cdkDropListDropped)="onDrop($event)">
+      <div class="todo-block" *ngFor="let todosList of TodosList" cdkDrag>{{todosList}}</div>
+    </div>
+  </div>
+
+  <div class="container col-md-6">
+    <h2>completed :</h2>
+    <p>Drag here to Delete</p>
+    <div
+            cdkDropList
+            #doneTotosList="cdkDropList"
+            [cdkDropListData]="DoneTodosList"
+            [cdkDropListConnectedTo]="[todosList]"
+            class="todo-list" 
+            (cdkDropListDropped)="onDrop($event)">
+      <div class="todo-block"  *ngFor="let doneTodosList of DoneTodosList" cdkDrag>
+          {{doneTodosList}}
+          <button mat-button color="warn" (click)="deleteTodo(doneTodosList)">delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
